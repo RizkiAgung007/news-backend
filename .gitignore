@@ -28,9 +28,9 @@ dist-ssr/
 # FrontEnd/src/config.js
 # FrontEnd/node_modules/
 
-BackEnd/.env
-BackEnd/uploads/
-BackEnd/node_modules/
+.env
+uploads/
+node_modules/
 
 # Misc
 npm.txt
