@@ -15,10 +15,19 @@ dotenv.config();
 
 const app = express();
 
+const allowOrigins = process.env.ALLOWED_ORIGINS.split(',');
+
 app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true,
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS: ' + origin));
+        }
+    },
+    credentials: true
 }));
+
 app.use(express.json());
 // app.use(rateLimit())
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
