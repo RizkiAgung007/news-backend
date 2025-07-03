@@ -48,7 +48,6 @@ const app = express();
 // TAMBAHKAN KODE INI SEBAGAI PENGGANTI:
 const allowOrigins = [
   "https://rainbow-cocada-69c528.netlify.app",
-  "http://localhost:5173",
 ];
 
 console.log("Allowed Origins (Hardcoded):", allowOrigins);
