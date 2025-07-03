@@ -11,6 +11,18 @@ import dotenv from "dotenv";
 import path from "path";
 import rateLimit from "express-rate-limit";
 
+// =======================================================
+// KODE DEBUGGING - Tambahkan ini untuk melihat variabel
+console.log("----- DEBUGGING ENVIRONMENT VARIABLES -----");
+console.log("ALLOWED_ORIGINS:", process.env.ALLOWED_ORIGINS);
+console.log("DB_HOST:", process.env.DB_HOST);
+// !!process.env.DB_PASS akan mencetak 'true' jika variabel ada,
+// ini lebih aman daripada mencetak password asli ke log.
+console.log("DB_PASS is set:", !!process.env.DB_PASS); 
+console.log("-----------------------------------------");
+// =======================================================
+
+
 dotenv.config();
 
 const app = express();
