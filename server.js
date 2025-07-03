@@ -12,53 +12,28 @@ import path from "path";
 import rateLimit from "express-rate-limit";
 
 // =======================================================
-// KODE DEBUGGING - Tambahkan ini untuk melihat variabel
 console.log("----- DEBUGGING ENVIRONMENT VARIABLES -----");
 console.log("ALLOWED_ORIGINS:", process.env.ALLOWED_ORIGINS);
 console.log("DB_HOST:", process.env.DB_HOST);
-// !!process.env.DB_PASS akan mencetak 'true' jika variabel ada,
-// ini lebih aman daripada mencetak password asli ke log.
 console.log("DB_PASS is set:", !!process.env.DB_PASS);
-console.log("-----------------------------------------");
+console.log("-------------------------------------------");
 // =======================================================
 
 dotenv.config();
 
 const app = express();
 
-// const allowOrigins = process.env.ALLOWED_ORIGINS.split(",").map(origin => origin.trim());
-
-// app.use(
-//     cors({
-//         origin: function (origin, callback) {
-//             if (!origin || allowOrigins.includes(origin)) {
-//                 callback(null, true);
-//             } else {
-//                 callback(new Error("Not allowed by CORS: " + origin));
-//             }
-//         },
-//         credentials: true,
-//     })
-// );
-
-// const allowOrigins = process.env.ALLOWED_ORIGINS
-//   ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim())
-//   : [];
-
-// TAMBAHKAN KODE INI SEBAGAI PENGGANTI:
 const allowOrigins = [
-  "https://rainbow-cocada-69c528.netlify.app",
+  process.env.ALLOWED_ORIGINS
 ];
-
-console.log("Allowed Origins (Hardcoded):", allowOrigins);
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowOrigins.includes(origin)) {
+      if (allowOrigins.indexOf(origin) !== -1 || !origin) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS: "));
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
