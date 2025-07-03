@@ -15,14 +15,6 @@ dotenv.config();
 
 const app = express();
 
-// =======================================================
-console.log("----- DEBUGGING ENVIRONMENT VARIABLES -----");
-console.log("ALLOWED_ORIGINS:", process.env.ALLOWED_ORIGINS);
-console.log("DB_HOST:", process.env.DB_HOST);
-console.log("DB_PASS is set:", !!process.env.DB_PASS);
-console.log("-------------------------------------------");
-// =======================================================
-
 const allowOrigins = [
   process.env.ALLOWED_ORIGINS
 ];
