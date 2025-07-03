@@ -18,10 +18,9 @@ console.log("ALLOWED_ORIGINS:", process.env.ALLOWED_ORIGINS);
 console.log("DB_HOST:", process.env.DB_HOST);
 // !!process.env.DB_PASS akan mencetak 'true' jika variabel ada,
 // ini lebih aman daripada mencetak password asli ke log.
-console.log("DB_PASS is set:", !!process.env.DB_PASS); 
+console.log("DB_PASS is set:", !!process.env.DB_PASS);
 console.log("-----------------------------------------");
 // =======================================================
-
 
 dotenv.config();
 
@@ -46,38 +45,21 @@ const app = express();
 //   ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim())
 //   : [];
 
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       console.log("Request origin:", origin); // 🟡 Tambahkan ini untuk debug
-//       if (!origin || allowOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS: " + origin));
-//       }
-//     },
-//     credentials: true,
-//   })
-// );
-
 // TAMBAHKAN KODE INI SEBAGAI PENGGANTI:
 const allowOrigins = [
-  'https://rainbow-cocada-69c528.netlify.app', // URL Netlify baru Anda
-  'http://localhost:5173'
+  "https://rainbow-cocada-69c528.netlify.app",
+  "http://localhost:5173",
 ];
 
-// Log ini untuk memastikan array sudah benar
 console.log("Allowed Origins (Hardcoded):", allowOrigins);
 
-// Bagian app.use(cors(...)) biarkan sama seperti sebelumnya
 app.use(
   cors({
     origin: function (origin, callback) {
-      console.log("Request origin:", origin);
       if (!origin || allowOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS: " + origin));
+        callback(new Error("Not allowed by CORS: "));
       }
     },
     credentials: true,
@@ -96,6 +78,6 @@ app.use("/api/likes", likeRoutes);
 app.use("/api/review", reviewRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
