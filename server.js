@@ -43,7 +43,7 @@ app.use("/api/category", categoryRoutes);
 app.use("/api/likes", likeRoutes);
 app.use("/api/review", reviewRoutes);
 
-const PORT = process.env.DB_PORT || 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on http://dashing-cucurucho-3cca2a.netlify.app:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
