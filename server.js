@@ -30,14 +30,38 @@ const app = express();
 //     })
 // );
 
-const allowOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim())
-  : [];
+// const allowOrigins = process.env.ALLOWED_ORIGINS
+//   ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim())
+//   : [];
 
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       console.log("Request origin:", origin); // 🟡 Tambahkan ini untuk debug
+//       if (!origin || allowOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS: " + origin));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
+
+// TAMBAHKAN KODE INI SEBAGAI PENGGANTI:
+const allowOrigins = [
+  'https://rainbow-cocada-69c528.netlify.app', // URL Netlify baru Anda
+  'http://localhost:5173'
+];
+
+// Log ini untuk memastikan array sudah benar
+console.log("Allowed Origins (Hardcoded):", allowOrigins);
+
+// Bagian app.use(cors(...)) biarkan sama seperti sebelumnya
 app.use(
   cors({
     origin: function (origin, callback) {
-      console.log("Request origin:", origin); // 🟡 Tambahkan ini untuk debug
+      console.log("Request origin:", origin);
       if (!origin || allowOrigins.includes(origin)) {
         callback(null, true);
       } else {
