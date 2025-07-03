@@ -16,20 +16,20 @@ dotenv.config();
 const app = express();
 
 const allowOrigins = process.env.ALLOWED_ORIGINS.split(",").map(origin => origin.trim());
-console.log("ENV ALLOWED_ORIGINS:", process.env.ALLOWED_ORIGINS);
 
 app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS: " + origin));
-      }
-    },
-    credentials: true,
-  })
+    cors({
+        origin: function (origin, callback) {
+            if (!origin || allowOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS: " + origin));
+            }
+        },
+        credentials: true,
+    })
 );
+console.log("ENV ALLOWED_ORIGINS:", process.env.ALLOWED_ORIGINS);
 
 app.use(express.json());
 // app.use(rateLimit())
