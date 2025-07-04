@@ -29,7 +29,7 @@ dist-ssr/
 # FrontEnd/node_modules/
 
 .env
-uploads/
+# uploads/
 node_modules/
 
 # Misc
