@@ -49,10 +49,11 @@ router.get("/", verifyToken, async (req, res) => {
         const [reviews] = await db.query(dataQuery, dataQueryParams);
 
         res.json({
+            status: "success",
+            totalReviews,
             reviews,
             currentPage: page,
             totalPages,
-            totalReviews,
         });
 
     } catch (err) {

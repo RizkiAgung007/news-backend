@@ -121,7 +121,7 @@ router.post("/login", loginLimit, async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: "Password salah" });
+      return res.status(401).json({ message: "Username dan Password salah" });
     }
 
     const token = jwt.sign({ id: userId, username, role: role }, JWT_SECRET, {
@@ -513,10 +513,11 @@ router.get("/all-users", verifyToken, async (req, res) => {
     const [users] = await db.query(dataQuery, dataParams);
 
     res.json({
+      status: "success",
+      totalUsers,
       users,
       currentPage: page,
       totalPages,
-      totalUsers,
     });
   } catch (error) {
     console.error("GET ALL USERS ERROR:", error);

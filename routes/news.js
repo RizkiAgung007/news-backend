@@ -96,10 +96,11 @@ router.get("/all-news", verifyToken, async (req, res) => {
     const [news] = await db.query(dataQuery, dataQueryParams);
 
     res.json({
+      status: "success",
+      totalNews,
       news,
       currentPage: page,
       totalPages,
-      totalNews,
     });
   } catch (error) {
     console.error("Get ALL NEWS ERROR:", error);
