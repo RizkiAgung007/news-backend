@@ -15,29 +15,29 @@ dotenv.config();
 
 const app = express();
 
-// const allowOrigins = [
-//   process.env.ALLOWED_ORIGINS
-// ];
-
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       if (allowOrigins.indexOf(origin) !== -1 || !origin) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     credentials: true,
-//   })
-// );
+const allowOrigins = [
+  process.env.ALLOWED_ORIGINS
+];
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
-    credentials:true,
+    origin: function (origin, callback) {
+      if (allowOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
-)
+);
+
+// app.use(
+//   cors({
+//     origin: 'http://localhost:5173',
+//     credentials:true,
+//   })
+// )
 
 app.use(express.json());
 // app.use(rateLimit())
