@@ -9,13 +9,7 @@ router.get('/all', verifyToken, async (req, res) => {
   if (req.role !== 'admin') return res.status(403).json({ message: 'Akses ditolak' });
   try {
     const [results] = await db.query('SELECT * FROM category ORDER BY name ASC');
-    const [totalCate] = await db.query('SELECT COUNT (*) as total FROM category');
-    const category = totalCate[0].total;
-    res.json({
-      status: 'success',
-      category,
-      results
-    });
+    res.json(results);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
